@@ -18,6 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@mfe/ui": ["libs/shared/ui/src/index.ts"],
       "@mfe/hooks": ["libs/shared/hooks/src/index.ts"],

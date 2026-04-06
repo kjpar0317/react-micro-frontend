@@ -24,12 +24,13 @@
     "test": "nx test utils"
   },
   "dependencies": {
+    "@mfe/types": "workspace:*",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@nx/vite": "^22.6.4",
     "@tailwindcss/postcss": "^4.2.2",
-    "@types/node": "20.19.9",
+    "@types/node": "^22.13.9",
     "autoprefixer": "^10.4.27",
     "nx": "22.6.4",
     "postcss": "^8.5.8",

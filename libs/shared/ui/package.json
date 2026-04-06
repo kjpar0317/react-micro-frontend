@@ -29,6 +29,8 @@
     "tailwindcss": "^4.2.2"
   },
   "dependencies": {
+    "@mfe/types": "workspace:*",
+    "@mfe/utils": "workspace:*",
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
@@ -38,7 +40,7 @@
   "devDependencies": {
     "@nx/vite": "^22.6.4",
     "@tailwindcss/postcss": "^4.2.2",
-    "@types/node": "20.19.9",
+    "@types/node": "^22.13.9",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.0",

@@ -7,9 +7,12 @@
     "lint": "biome lint .",
     "format": "biome format . --write",
     "check": "biome check . --write",
+    "clean": "powershell ./scripts/clean-all.ps1",
     "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
-    "test": "pnpm -r test"
+    "build": "pnpm nx run-many --target=build",
+    "test": "pnpm -r test",
+    "docker:build": "docker build --build-arg APP_NAME=${npm_config_app:-host} -t mfe-${npm_config_app:-host} .",
+    "docker:run": "docker run -p 8080:80 mfe-${npm_config_app:-host}"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
