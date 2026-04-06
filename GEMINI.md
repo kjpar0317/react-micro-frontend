@@ -10,7 +10,8 @@
 
 ### Application Structure (`apps/`)
 - `apps/host`: 공통 쉘 애플리케이션 (Common Host)
-- `apps/remote-main`: 로그인, 대시보드 등 통합 공통 앱
+- `apps/remote-main`: 대시보드 등 통합 공통 앱
+- `apps/remote-auth`: 로그인 서비스 앱
 - `apps/remote-billing`: 빌링 서비스 앱
 - `apps/remote-wired`: 유선 서비스 앱
 - `apps/remote-wireless`: 무선 서비스 앱

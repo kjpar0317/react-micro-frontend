@@ -1,1 +1,6 @@
+packages:
+  - "apps/*"
+  - "libs/**"
+
 autoInstallPeers: true
+# 주석: pnpm 워크스페이스 설정입니다. 'apps/*'와 'libs/**' 디렉토리 내의 모든 프로젝트를 패키지로 인식합니다.

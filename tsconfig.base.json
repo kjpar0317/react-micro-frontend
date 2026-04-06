@@ -2,9 +2,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -13,7 +14,6 @@
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
@@ -25,5 +25,6 @@
       "@shared/types": ["libs/shared/types/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "//": "주석: 워크스페이스의 기본 TypeScript 설정입니다. 'moduleResolution'을 'bundler'로 설정하여 Vite와의 호환성을 높였으며, 'paths' 설정을 통해 로컬 개발 시 소스 코드를 직접 참조하여 실시간 변경 사항을 반영할 수 있게 했습니다."
 }

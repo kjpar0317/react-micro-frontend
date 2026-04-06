@@ -1,11 +1,39 @@
 {
   "name": "@shared/utils",
   "version": "0.0.1",
-  "private": true,
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "description": "Shared utility functions",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "nx build utils",
+    "test": "nx test utils"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "20.19.9",
+    "nx": "22.6.4",
+    "typescript": "^6.0.2",
+    "vitest": "~4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "//": "주석: 이 패키지는 로직 유틸리티를 제공하며, 빌드된 결과물을 통해 다른 앱이나 라이브러리에서 참조 가능합니다. pnpm workspace 프로토콜('workspace:*')을 사용하여 모노레포 내 최신 소스를 유지합니다."
 }

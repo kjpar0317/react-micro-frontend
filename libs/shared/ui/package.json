@@ -1,12 +1,54 @@
 {
   "name": "@shared/ui",
   "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "description": "Shared UI components powered by TailwindCSS and Radix UI",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
     }
-  }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "nx build ui",
+    "test": "nx test ui"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.2"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.479.0",
+    "tailwind-merge": "^3.0.1",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nx/vite": "^22.6.4",
+    "@types/node": "20.19.9",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.0",
+    "nx": "22.6.4",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0",
+    "vite-plugin-dts": "~4.5.0",
+    "vitest": "~4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "//": "주석: 이 패키지는 UI 컴포넌트를 포함하며 TailwindCSS와 Radix UI를 기반으로 합니다. pnpm workspace 프로토콜을 통해 모노레포 내에서 유연하게 참조됩니다."
 }

@@ -1,11 +1,45 @@
 {
   "name": "@shared/hooks",
   "version": "0.0.1",
-  "private": true,
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "description": "Shared React hooks",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "nx build hooks",
+    "test": "nx test hooks"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "20.19.9",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "nx": "22.6.4",
+    "typescript": "^6.0.2",
+    "vitest": "~4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "//": "주석: 이 패키지는 React Hooks을 정의하며, 'peerDependencies'를 통해 앱의 React 버전을 사용하도록 설정되었습니다. pnpm workspace를 통한 로컬 개발을 지원합니다."
 }

@@ -9,7 +9,7 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/shared/hooks",
+        "outputPath": "libs/shared/hooks/dist",
         "main": "libs/shared/hooks/src/index.ts",
         "tsConfig": "libs/shared/hooks/tsconfig.lib.json",
         "assets": ["libs/shared/hooks/*.md"]

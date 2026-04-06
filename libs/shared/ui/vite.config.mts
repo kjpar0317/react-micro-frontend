@@ -27,7 +27,8 @@ export default defineConfig(() => ({
   // Configuration for building your library.
   // See: https://vite.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../../dist/libs/shared/ui',
+    // 빌드 결과를 패키지 내부의 dist 폴더에 저장합니다.
+    outDir: 'dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

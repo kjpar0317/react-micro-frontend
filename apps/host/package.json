@@ -1,0 +1,36 @@
+{
+  "name": "@mfe/host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@shared/hooks": "workspace:*",
+    "@shared/types": "workspace:*",
+    "@shared/ui": "workspace:*",
+    "@shared/utils": "workspace:*",
+    "@tanstack/react-query": "^5.96.2",
+    "@tanstack/react-router": "^1.168.10",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "autoprefixer": "^10.4.27",
+    "jsdom": "^29.0.1",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0",
+    "vitest": "^4.1.2"
+  },
+  "//": "주석: Host 애플리케이션입니다. pnpm workspace 프로토콜('*')을 사용하여 동일 레포 내의 공유 라이브러리를 참조합니다. 개별 Git 레포로 분리 시에도 이 package.json을 통해 독립적인 빌드가 가능합니다."
+}
