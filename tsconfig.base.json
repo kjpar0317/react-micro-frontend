@@ -8,16 +8,21 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "esnext",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "paths": {
-      "ui": ["libs/shared/ui/src/index.ts"],
-      "hooks": ["libs/shared/hooks/src/index.ts"],
-      "utils": ["libs/shared/utils/src/index.ts"]
+      "@shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@shared/hooks": ["libs/shared/hooks/src/index.ts"],
+      "@shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@shared/types": ["libs/shared/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
