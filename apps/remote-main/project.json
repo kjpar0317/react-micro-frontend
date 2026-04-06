@@ -1,0 +1,9 @@
+{
+  "name": "remote-main",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remote-main/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project remote-dashboard-login --web",
+  "targets": {}
+}

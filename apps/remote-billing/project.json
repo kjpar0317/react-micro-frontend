@@ -1,0 +1,9 @@
+{
+  "name": "remote-billing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remote-billing/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project remote-billing --web",
+  "targets": {}
+}
