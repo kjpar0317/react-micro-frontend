@@ -9,16 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@shared/hooks": "workspace:*",
-    "@shared/types": "workspace:*",
-    "@shared/ui": "workspace:*",
-    "@shared/utils": "workspace:*",
+    "@mfe/hooks": "workspace:*",
+    "@mfe/types": "workspace:*",
+    "@mfe/ui": "workspace:*",
+    "@mfe/utils": "workspace:*",
     "@tanstack/react-query": "^5.96.2",
     "@tanstack/react-router": "^1.168.10",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@nx/react": "^22.6.4",
+    "@nx/vite": "^22.6.4",
+    "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^22.13.9",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
