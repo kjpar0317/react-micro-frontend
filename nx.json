@@ -20,7 +20,7 @@
         "testTargetName": "test",
         "serveTargetName": "serve",
         "devTargetName": "dev",
-        "previewTargetName": "preview",
+        "previewTargetName": "preview-server",
         "serveStaticTargetName": "serve-static",
         "typecheckTargetName": "typecheck",
         "buildDepsTargetName": "build-deps",

@@ -20,8 +20,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "nx build utils",
-    "test": "nx test utils"
+    "build": "vite build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@mfe/types": "workspace:*",

@@ -8,8 +8,12 @@
     "format": "biome format . --write",
     "check": "biome check . --write",
     "clean": "powershell ./scripts/clean-all.ps1",
-    "dev": "pnpm -r --parallel dev",
+    "kill-ports": "node scripts/kill-ports.mjs",
+    "dev": "pnpm build && pnpm kill-ports && concurrently -n \"REMOTE,HOST\" -c \"magenta,blue\" \"pnpm nx run-many --target=preview-server --projects='remote-*'\" \"pnpm nx run host:dev\"",
+    "dev:fast": "pnpm kill-ports && concurrently -n \"REMOTE,HOST\" -c \"magenta,blue\" \"pnpm nx run-many --target=preview-server --projects='remote-*'\" \"pnpm nx run host:dev\"",
+    "dev:remotes": "pnpm build && pnpm --filter \"@mfe/remote-*\" --parallel preview",
     "build": "pnpm nx run-many --target=build",
+    "preview": "pnpm -r --parallel preview",
     "test": "pnpm -r test",
     "docker:build": "docker build --build-arg APP_NAME=${npm_config_app:-host} -t mfe-${npm_config_app:-host} .",
     "docker:run": "docker run -p 8080:80 mfe-${npm_config_app:-host}"
@@ -24,6 +28,8 @@
     "@nx/vitest": "22.6.4",
     "@nx/web": "22.6.4",
     "@nx/workspace": "22.6.4",
+    "@types/node": "^22.13.9",
+    "concurrently": "^9.2.1",
     "nx": "22.6.4",
     "typescript": "^6.0.2"
   },

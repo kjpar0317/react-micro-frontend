@@ -10,27 +10,32 @@
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/remote-wired"
+        "outputPath": "dist/apps/remote-wired",
+        "configFile": "apps/remote-wired/vite.config.mts"
       }
     },
     "serve": {
       "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "remote-wired:build",
-        "port": 4204
+        "port": 4202,
+        "configFile": "apps/remote-wired/vite.config.mts"
       }
     },
-    "preview": {
-      "executor": "@nx/vite:preview",
+    "preview-server": {
+      "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "remote-wired:build"
+        "buildTarget": "remote-wired:build",
+        "staticFilePath": "dist/apps/remote-wired",
+        "configFile": "apps/remote-wired/vite.config.mts"
       }
     },
     "test": {
       "executor": "@nx/vite:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../coverage/apps/remote-wired"
+        "reportsDirectory": "../../coverage/apps/remote-wired",
+        "configFile": "apps/remote-wired/vite.config.mts"
       }
     }
   }

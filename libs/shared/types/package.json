@@ -20,8 +20,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "nx build types",
-    "test": "nx test types"
+    "build": "tsc -b tsconfig.lib.json",
+    "test": "vitest run"
   },
   "dependencies": {
     "tslib": "^2.3.0"

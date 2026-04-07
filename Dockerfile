@@ -11,9 +11,7 @@ RUN npm install -g pnpm
 # Copy only workspace files and lockfile first to leverage Docker cache
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps/host/package.json ./apps/host/
-COPY apps/remote-auth/package.json ./apps/remote-auth/
 COPY apps/remote-billing/package.json ./apps/remote-billing/
-COPY apps/remote-main/package.json ./apps/remote-main/
 COPY apps/remote-wired/package.json ./apps/remote-wired/
 COPY apps/remote-wireless/package.json ./apps/remote-wireless/
 COPY libs/shared/hooks/package.json ./libs/shared/hooks/

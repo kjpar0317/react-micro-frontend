@@ -20,8 +20,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "nx build hooks",
-    "test": "nx test hooks"
+    "build": "vite build",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "react": "^19.0.0",
