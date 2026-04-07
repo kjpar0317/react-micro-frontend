@@ -13,8 +13,7 @@ description: Nx 모노레포 기반의 폴더 구조 정의 및 pnpm/TypeScript 
 
 ### 1. `apps/` (Applications)
 실제로 배포 가능한 단위인 마이크로 프런트엔드 애플리케이션들이 위치합니다.
-- `apps/host`: 공통 쉘 애플리케이션 (Host).
-- `apps/remote-main`: 로그인, 대시보드 등 통합 공통 앱.
+- `apps/host`: 메인 애플리케이션.
 - `apps/remote-billing`: 빌링 서비스 앱.
 - `apps/remote-wired`: 유선 서비스 앱.
 - `apps/remote-wireless`: 무선 서비스 앱.

@@ -1,36 +1,41 @@
 import React from 'react';
 import { Network, Activity, Globe } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter, Badge } from '@mfe/ui';
 
 export const Widget = () => {
   return (
-    <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl text-white">
-      <div className="flex items-center justify-between mb-4">
-        <div className="p-3 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500">
-          <Network className="w-6 h-6 text-white" />
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          <span className="text-xs text-green-400 font-medium">Online</span>
-        </div>
-      </div>
-      <div>
-        <h3 className="text-sm font-medium text-white/60 mb-1">Network Status</h3>
-        <p className="text-2xl font-bold mb-4">980 Mbps</p>
-        <div className="space-y-2 mt-4">
-          <div className="flex justify-between items-center text-xs">
-            <span className="text-white/40">Latency</span>
-            <span className="text-cyan-400">12 ms</span>
+    <Card className="bg-muted/50 border-border backdrop-blur-md shadow-2xl hover:bg-muted transition-all cursor-pointer group">
+      <CardHeader className="pb-4">
+        <div className="flex items-center justify-between">
+          <div className="p-2.5 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+            <Network className="w-5 h-5 text-white" />
           </div>
-          <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-            <div className="bg-gradient-to-r from-indigo-500 to-cyan-500 h-full w-[85%] rounded-full"></div>
+          <Badge className="bg-indigo-500/20 text-indigo-400 border-indigo-500/30 hover:bg-indigo-500/30">
+            Active
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">Wired Network</CardTitle>
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-bold tracking-tight">940.2</span>
+          <span className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">Mbps</span>
+        </div>
+      </CardContent>
+      <CardFooter className="pt-4 border-t border-border">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-2 text-[10px] text-muted-foreground/40 uppercase tracking-widest font-bold">
+            <Activity className="w-3 h-3 text-indigo-400" />
+            <span>Optimal Ping</span>
+          </div>
+          <div className="flex items-center gap-1">
+             <div className="w-1 h-1 rounded-full bg-indigo-400 animate-ping"></div>
+             <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Live</span>
           </div>
         </div>
-      </div>
-      <div className="mt-6 pt-6 border-t border-white/10 flex items-center gap-3">
-        <Globe className="w-4 h-4 text-cyan-400" />
-        <p className="text-xs text-white/60">Wired Giga Plan Active</p>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
+
   );
 };
 

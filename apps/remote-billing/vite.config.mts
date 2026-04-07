@@ -28,6 +28,7 @@ export default defineConfig(() => ({
         './Widget': './src/components/Widget.tsx',
       },
       shared: ['react', 'react-dom', '@tanstack/react-router'],
+      dev: true,
     }),
   ],
   // Uncomment this if you are using workers.

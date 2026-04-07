@@ -1,30 +1,38 @@
 import React from 'react';
 import { CreditCard, TrendingUp, AlertCircle } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter, Badge } from '@mfe/ui';
 
 export const Widget = () => {
   return (
-    <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl text-white">
-      <div className="flex items-center justify-between mb-4">
-        <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600">
-          <CreditCard className="w-6 h-6 text-white" />
+    <Card className="bg-muted/50 border-border backdrop-blur-md shadow-2xl hover:bg-muted transition-all cursor-pointer group">
+      <CardHeader className="pb-4">
+        <div className="flex items-center justify-between">
+          <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+            <CreditCard className="w-5 h-5 text-white" />
+          </div>
+          <Badge className="bg-green-500/20 text-green-400 border-green-500/30 hover:bg-green-500/30">
+            Paid
+          </Badge>
         </div>
-        <span className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium border border-green-500/30">
-          Paid
-        </span>
-      </div>
-      <div>
-        <h3 className="text-sm font-medium text-white/60 mb-1">Billing Overview</h3>
-        <p className="text-2xl font-bold mb-4">$124.50</p>
-        <div className="flex items-center gap-2 text-xs text-white/40">
-          <TrendingUp className="w-4 h-4 text-green-400" />
-          <span>8% from last month</span>
+      </CardHeader>
+      <CardContent>
+        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">Total Billing</CardTitle>
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-bold tracking-tight">$124.50</span>
+          <div className="flex items-center gap-1 text-[10px] text-green-400 font-bold uppercase tracking-wider">
+            <TrendingUp className="w-3 h-3" />
+            <span>+8%</span>
+          </div>
         </div>
-      </div>
-      <div className="mt-6 pt-6 border-t border-white/10 flex items-center gap-3">
-        <AlertCircle className="w-4 h-4 text-purple-400" />
-        <p className="text-xs text-white/60">Next billing date: April 15, 2026</p>
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter className="pt-4 border-t border-border">
+        <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+          <AlertCircle className="w-3 h-3 text-purple-400" />
+          <span>Next: April 15, 2026</span>
+        </div>
+      </CardFooter>
+    </Card>
+
   );
 };
 

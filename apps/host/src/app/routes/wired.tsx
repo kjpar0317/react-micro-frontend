@@ -1,27 +1,29 @@
-import React, { Suspense, lazy } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
+import { lazy, Suspense } from 'react';
 
 const WiredWidget = lazy(() => import('remote_wired/Widget'));
 
 const WiredPage = () => {
-    return (
-        <div className="max-w-[1240px] mx-auto pb-10">
-            <h1 className="text-4xl font-extrabold mb-8">Wired Network Service</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Suspense fallback={<div className="h-48 bg-white/5 animate-pulse rounded-2xl"></div>}>
-                    <WiredWidget />
-                </Suspense>
-                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                    <h2 className="text-xl font-bold mb-4">Network Management</h2>
-                    <p className="text-white/60 mb-6 font-medium leading-relaxed">
-                        Optimize your home or office network. Manage individual nodes, monitor real-time bandwidth, and schedule maintenance from this unified interface.
-                    </p>
-                </div>
-            </div>
+  return (
+    <div className="max-w-[1240px] mx-auto pb-10">
+      <h1 className="text-4xl font-extrabold mb-8">Wired Network Service</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Suspense fallback={<div className="h-48 bg-muted/50 animate-pulse rounded-2xl"></div>}>
+          <WiredWidget />
+        </Suspense>
+        <div className="p-8 rounded-3xl bg-muted/50 border border-border">
+          <h2 className="text-xl font-bold mb-4">Network Management</h2>
+          <p className="text-muted-foreground mb-6 font-medium leading-relaxed">
+            Optimize your home or office network. Manage individual nodes, monitor real-time
+            bandwidth, and schedule maintenance from this unified interface.
+          </p>
+
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export const Route = createFileRoute('/wired')({
-    component: WiredPage,
+  component: WiredPage,
 });

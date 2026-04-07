@@ -9,9 +9,7 @@
 이 프로젝트는 **React 19**, **Vite**, **TanStack Router**를 기반으로 하며, **Nx** 모노레포 환경에서 **Module Federation**을 통해 여러 마이크로 프런트엔드 애플리케이션을 통합합니다. 패키지 매니저는 **pnpm**을 사용하며, 전역적으로 **TypeScript**와 **Biome**을 통해 코드 품질을 관리합니다.
 
 ### Application Structure (`apps/`)
-- `apps/host`: 공통 쉘 애플리케이션 (Common Host)
-- `apps/remote-main`: 대시보드 등 통합 공통 앱
-- `apps/remote-auth`: 로그인 서비스 앱
+- `apps/host`: 메인 애플리케이션
 - `apps/remote-billing`: 빌링 서비스 앱
 - `apps/remote-wired`: 유선 서비스 앱
 - `apps/remote-wireless`: 무선 서비스 앱
