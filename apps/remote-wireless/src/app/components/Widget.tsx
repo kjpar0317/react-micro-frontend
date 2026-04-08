@@ -1,7 +1,22 @@
 import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle } from '@mfe/ui';
+import { useSetAtom } from 'jotai';
 import { Smartphone, Wifi, Zap } from 'lucide-react';
+import { useEffect } from 'react';
+import { themeAtom } from '../state/theme';
 
-export const Widget = () => {
+interface WidgetProps {
+  theme?: 'dark' | 'light';
+}
+
+export function Widget({ theme }: WidgetProps) {
+  const setTheme = useSetAtom(themeAtom);
+
+  useEffect(() => {
+    if (theme) {
+      setTheme(theme);
+    }
+  }, [theme, setTheme]);
+
   return (
     <Card className="bg-muted/50 border-border backdrop-blur-md shadow-2xl hover:bg-muted transition-all cursor-pointer group">
       <CardHeader className="pb-4">
@@ -44,6 +59,6 @@ export const Widget = () => {
       </CardFooter>
     </Card>
   );
-};
+}
 
 export default Widget;

@@ -5,7 +5,7 @@ import { safeLazy } from '../utils/remote-loader';
 
 const WirelessWidget = safeLazy(() => import('remote_wireless/Widget'));
 
-const WirelessPage = () => {
+function WirelessPage() {
   return (
     <div className="max-w-[1240px] mx-auto pb-10">
       <h1 className="text-4xl font-extrabold mb-8">Wireless Mobile Service</h1>
@@ -22,11 +22,10 @@ const WirelessPage = () => {
             redefined.
           </p>
         </div>
-
       </div>
     </div>
   );
-};
+}
 
 export const Route = createFileRoute('/wireless')({
   component: WirelessPage,

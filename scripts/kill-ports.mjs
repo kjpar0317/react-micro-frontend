@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { platform } from 'node:os';
 
-const ports = [4200, 4201, 4202, 4203, 4204, 4205];
+const ports = [4200, 4201, 4202, 4203];
 const isWindows = platform() === 'win32';
 
 console.log(`🚀 Killing processes on ports: ${ports.join(', ')}`);
@@ -11,8 +11,8 @@ for (const port of ports) {
     if (isWindows) {
       // Windows: Find PID using netstat and kill using taskkill
       const stdout = execSync(`netstat -ano | findstr :${port}`).toString();
-      const lines = stdout.split('\n').filter(line => line.trim().length > 0);
-      
+      const lines = stdout.split('\n').filter((line) => line.trim().length > 0);
+
       const pids = new Set();
       for (const line of lines) {
         const parts = line.trim().split(/\s+/);
@@ -29,7 +29,9 @@ for (const port of ports) {
       }
     } else {
       // Linux/macOS: Use lsof to find PID and kill
-      const pid = execSync(`lsof -t -i:${port}`, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+      const pid = execSync(`lsof -t -i:${port}`, { stdio: ['ignore', 'pipe', 'ignore'] })
+        .toString()
+        .trim();
       if (pid) {
         console.log(`  [Unix] Killing PID ${pid} on port ${port}...`);
         execSync(`kill -9 ${pid}`, { stdio: 'ignore' });

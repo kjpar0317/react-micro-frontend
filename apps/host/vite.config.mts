@@ -1,5 +1,6 @@
 /// <reference types='vitest' />
 
+import path from 'node:path';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react';
@@ -21,6 +22,7 @@ export default defineConfig(({ mode }) => {
       port: 4200,
       host: 'localhost',
     },
+    base: '/',
     plugins: [
       tanstackRouter({
         routesDirectory: './src/app/routes',
@@ -36,7 +38,7 @@ export default defineConfig(({ mode }) => {
           remote_wired: env.VITE_REMOTE_WIRED_URL || 'http://localhost:4202/assets/remoteEntry.js',
           remote_wireless: env.VITE_REMOTE_WIRELESS_URL || 'http://localhost:4203/assets/remoteEntry.js',
         },
-        shared: ['react', 'react-dom', '@tanstack/react-router'],
+        shared: ['react', 'react-dom', '@tanstack/react-router', 'jotai'],
       }),
     ],
     // Uncomment this if you are using workers.
@@ -44,7 +46,7 @@ export default defineConfig(({ mode }) => {
     //   plugins: () => [ nxViteTsPaths() ],
     // },
     build: {
-      outDir: '../../dist/apps/host',
+      outDir: path.resolve(import.meta.dirname, '../../dist/apps/host'),
       emptyOutDir: true,
       reportCompressedSize: true,
       target: 'esnext',

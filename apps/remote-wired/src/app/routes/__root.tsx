@@ -1,35 +1,38 @@
-import { Separator, SidebarInset, SidebarProvider, SidebarTrigger, TooltipProvider, useSidebar } from '@mfe/ui';
+import {
+  Separator,
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+  TooltipProvider,
+  useSidebar,
+} from '@mfe/ui';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { useAtom } from 'jotai';
 import { Bell, Moon, Search, Sun } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { AppSidebar } from '../components/app-sidebar';
+import { themeAtom } from '../state/theme';
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
 
 function RootComponent() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') as 'dark' | 'light' || 'dark';
-    }
-    return 'dark';
-  });
+  const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme((prev: 'dark' | 'light') => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <div className="h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
         <SidebarProvider>
           <AppLayout theme={theme} toggleTheme={toggleTheme} />
         </SidebarProvider>
@@ -38,16 +41,18 @@ function RootComponent() {
   );
 }
 
-function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light', toggleTheme: () => void }) {
+function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: () => void }) {
   const { state } = useSidebar();
 
   return (
     <>
       <AppSidebar />
-      <SidebarInset className="flex flex-col flex-1 min-h-screen transition-all duration-200">
-        <header className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-10 shrink-0 transition-all duration-200 ${
-          state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
-        }`}>
+      <SidebarInset className="flex flex-col flex-1 h-screen overflow-hidden transition-all duration-200">
+        <header
+          className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-30 shrink-0 transition-all duration-200 ${
+            state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
+          }`}
+        >
           <div className="flex items-center gap-4">
             <SidebarTrigger className="relative z-50 h-9 w-9 text-primary bg-primary/10 hover:bg-primary/20 hover:text-primary transition-all border border-primary/20 rounded-lg shadow-sm" />
             <Separator orientation="vertical" className="h-4 bg-border" />
@@ -61,7 +66,7 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light', toggleThem
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button 
+            <button
               type="button"
               onClick={toggleTheme}
               className="w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
@@ -69,7 +74,10 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light', toggleThem
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <button type="button" className="relative w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors">
+            <button
+              type="button"
+              className="relative w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors"
+            >
               <Bell className="w-4 h-4 text-muted-foreground" />
               <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-destructive rounded-full border border-background"></span>
             </button>

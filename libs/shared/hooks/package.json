@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@mfe/types": "workspace:*",
+    "jotai": "^2.19.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

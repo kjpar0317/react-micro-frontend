@@ -5,7 +5,7 @@ import { safeLazy } from '../utils/remote-loader';
 
 const WiredWidget = safeLazy(() => import('remote_wired/Widget'));
 
-const WiredPage = () => {
+function WiredPage() {
   return (
     <div className="max-w-[1240px] mx-auto pb-10">
       <h1 className="text-4xl font-extrabold mb-8">Wired Network Service</h1>
@@ -21,12 +21,11 @@ const WiredPage = () => {
             Optimize your home or office network. Manage individual nodes, monitor real-time
             bandwidth, and schedule maintenance from this unified interface.
           </p>
-
         </div>
       </div>
     </div>
   );
-};
+}
 
 export const Route = createFileRoute('/wired')({
   component: WiredPage,

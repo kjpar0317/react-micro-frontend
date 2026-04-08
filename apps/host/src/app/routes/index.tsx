@@ -11,25 +11,31 @@ import {
   Skeleton,
 } from '@mfe/ui';
 import { createFileRoute } from '@tanstack/react-router';
+import { useAtomValue } from 'jotai';
 import { ArrowRight, History, Sparkles, Target, Zap } from 'lucide-react';
 import { Suspense } from 'react';
 import { SafeRemote } from '../components/SafeRemote';
+import { themeAtom } from '../state/theme';
 import { safeLazy } from '../utils/remote-loader';
 
 const BillingWidget = safeLazy(() => import('remote_billing/Widget'));
 const WiredWidget = safeLazy(() => import('remote_wired/Widget'));
 const WirelessWidget = safeLazy(() => import('remote_wireless/Widget'));
 
-const LoadingWidget = () => (
-  <Card className="bg-muted/50 border-border backdrop-blur-md overflow-hidden">
-    <CardContent className="p-12 flex flex-col items-center justify-center min-h-[220px]">
-      <div className="w-10 h-10 rounded-full border-2 border-t-indigo-500 border-border animate-spin mb-4" />
-      <Skeleton className="h-4 w-[120px] bg-border" />
-    </CardContent>
-  </Card>
-);
+function LoadingWidget() {
+  return (
+    <Card className="bg-muted/50 border-border backdrop-blur-md overflow-hidden">
+      <CardContent className="p-12 flex flex-col items-center justify-center min-h-[220px]">
+        <div className="w-10 h-10 rounded-full border-2 border-t-indigo-500 border-border animate-spin mb-4" />
+        <Skeleton className="h-4 w-[120px] bg-border" />
+      </CardContent>
+    </Card>
+  );
+}
 
-const Dashboard = () => {
+function Dashboard() {
+  const theme = useAtomValue(themeAtom);
+
   return (
     <div className="max-w-6xl mx-auto space-y-12">
       {/* Hero Section */}
@@ -57,17 +63,17 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <SafeRemote name="Billing">
           <Suspense fallback={<LoadingWidget />}>
-            <BillingWidget />
+            <BillingWidget theme={theme} />
           </Suspense>
         </SafeRemote>
         <SafeRemote name="Wired">
           <Suspense fallback={<LoadingWidget />}>
-            <WiredWidget />
+            <WiredWidget theme={theme} />
           </Suspense>
         </SafeRemote>
         <SafeRemote name="Wireless">
           <Suspense fallback={<LoadingWidget />}>
-            <WirelessWidget />
+            <WirelessWidget theme={theme} />
           </Suspense>
         </SafeRemote>
       </div>
@@ -186,7 +192,7 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
+}
 
 export const Route = createFileRoute('/')({
   component: Dashboard,

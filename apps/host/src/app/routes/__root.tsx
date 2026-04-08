@@ -7,36 +7,32 @@ import {
   useSidebar,
 } from '@mfe/ui';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { useAtom } from 'jotai';
 import { Bell, Moon, Search, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AppSidebar } from '../components/app-sidebar';
+import { themeAtom } from '../state/theme';
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
 
 function RootComponent() {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
-    }
-    return 'dark';
-  });
+  const [theme, setTheme] = useAtom(themeAtom);
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev: 'dark' | 'light') => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <div className="h-screen overflow-hidden bg-background text-foreground transition-colors duration-300">
         <SidebarProvider>
           <AppLayout theme={theme} toggleTheme={toggleTheme} />
         </SidebarProvider>
@@ -51,10 +47,10 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
   return (
     <>
       <AppSidebar />
-      <SidebarInset className="flex flex-col flex-1 min-h-screen transition-all duration-200">
+      <SidebarInset className="flex flex-col flex-1 h-screen overflow-hidden transition-all duration-200">
         {/* Top Header */}
         <header
-          className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-10 shrink-0 transition-all duration-200 ${
+          className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-30 shrink-0 transition-all duration-200 ${
             state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
           }`}
         >
