@@ -12,11 +12,13 @@ import {
 } from '@mfe/ui';
 import { createFileRoute } from '@tanstack/react-router';
 import { ArrowRight, History, Sparkles, Target, Zap } from 'lucide-react';
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
+import { SafeRemote } from '../components/SafeRemote';
+import { safeLazy } from '../utils/remote-loader';
 
-const BillingWidget = lazy(() => import('remote_billing/Widget'));
-const WiredWidget = lazy(() => import('remote_wired/Widget'));
-const WirelessWidget = lazy(() => import('remote_wireless/Widget'));
+const BillingWidget = safeLazy(() => import('remote_billing/Widget'));
+const WiredWidget = safeLazy(() => import('remote_wired/Widget'));
+const WirelessWidget = safeLazy(() => import('remote_wireless/Widget'));
 
 const LoadingWidget = () => (
   <Card className="bg-muted/50 border-border backdrop-blur-md overflow-hidden">
@@ -25,7 +27,6 @@ const LoadingWidget = () => (
       <Skeleton className="h-4 w-[120px] bg-border" />
     </CardContent>
   </Card>
-
 );
 
 const Dashboard = () => {
@@ -50,27 +51,31 @@ const Dashboard = () => {
           Monitor real-time performance, manage billing lifecycles, and optimize your network nodes
           through our integrated micro-frontend architecture.
         </p>
-
       </section>
 
       {/* Remote Widgets Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Suspense fallback={<LoadingWidget />}>
-          <BillingWidget />
-        </Suspense>
-        <Suspense fallback={<LoadingWidget />}>
-          <WiredWidget />
-        </Suspense>
-        <Suspense fallback={<LoadingWidget />}>
-          <WirelessWidget />
-        </Suspense>
+        <SafeRemote name="Billing">
+          <Suspense fallback={<LoadingWidget />}>
+            <BillingWidget />
+          </Suspense>
+        </SafeRemote>
+        <SafeRemote name="Wired">
+          <Suspense fallback={<LoadingWidget />}>
+            <WiredWidget />
+          </Suspense>
+        </SafeRemote>
+        <SafeRemote name="Wireless">
+          <Suspense fallback={<LoadingWidget />}>
+            <WirelessWidget />
+          </Suspense>
+        </SafeRemote>
       </div>
 
       {/* Insights and History */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-12">
         {/* Integration History */}
         <Card className="lg:col-span-3 bg-muted/5 border-border shadow-2xl">
-
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
@@ -82,7 +87,6 @@ const Dashboard = () => {
                   Recent system-wide synchronization events
                 </CardDescription>
               </div>
-
             </div>
             <Button
               variant="ghost"
@@ -92,7 +96,6 @@ const Dashboard = () => {
               VIEW ALL{' '}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-
           </CardHeader>
           <CardContent className="space-y-4">
             {[
@@ -115,7 +118,7 @@ const Dashboard = () => {
                 status: 'Success',
               },
             ].map((item, i) => (
-              <div key={i}>
+              <div key={i.toString()}>
                 <div className="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
                   <div className="flex items-center gap-4">
                     <div className="w-1 h-8 bg-indigo-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -125,7 +128,6 @@ const Dashboard = () => {
                         {item.app}
                       </p>
                     </div>
-
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-muted-foreground">{item.time}</p>
@@ -139,14 +141,12 @@ const Dashboard = () => {
                 </div>
                 {i < 2 && <Separator className="bg-border" />}
               </div>
-
             ))}
           </CardContent>
         </Card>
 
         {/* Performance Card */}
         <Card className="lg:col-span-2 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-border relative overflow-hidden group">
-
           <Zap className="absolute top-[-10%] right-[-5%] w-32 h-32 text-indigo-500/10 -z-0 group-hover:rotate-12 transition-transform duration-700" />
           <CardHeader>
             <div className="p-3 rounded-xl bg-indigo-500 w-12 h-12 flex items-center justify-center mb-2 shadow-xl shadow-indigo-500/40">
@@ -171,7 +171,6 @@ const Dashboard = () => {
                   key={feat}
                   className="flex items-center gap-3 text-xs font-medium text-muted-foreground"
                 >
-
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                   {feat}
                 </div>

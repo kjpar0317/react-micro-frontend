@@ -5,6 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import federation from '@originjs/vite-plugin-federation';
+import { tanstackRouter } from '@tanstack/router-vite-plugin';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -18,6 +19,10 @@ export default defineConfig(() => ({
     host: 'localhost',
   },
   plugins: [
+    tanstackRouter({
+      routesDirectory: './src/app/routes',
+      generatedRouteTree: './src/routeTree.gen.ts',
+    }),
     react(),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
@@ -25,10 +30,9 @@ export default defineConfig(() => ({
       name: 'remote_wireless',
       filename: 'remoteEntry.js',
       exposes: {
-        './Widget': './src/components/Widget.tsx',
+        './Widget': './src/app/components/Widget.tsx',
       },
       shared: ['react', 'react-dom', '@tanstack/react-router'],
-      dev: true,
     }),
   ],
   // Uncomment this if you are using workers.

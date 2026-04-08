@@ -1,6 +1,5 @@
-import React from 'react';
-import { Wifi, Zap, Smartphone } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter, Badge } from '@mfe/ui';
+import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle } from '@mfe/ui';
+import { Smartphone, Wifi, Zap } from 'lucide-react';
 
 export const Widget = () => {
   return (
@@ -17,10 +16,14 @@ export const Widget = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <CardTitle className="text-sm font-medium text-muted-foreground mb-1">Wireless Mobile</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground mb-1">
+            Wireless Mobile
+          </CardTitle>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold tracking-tight">42.5</span>
-            <span className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">GB</span>
+            <span className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">
+              GB
+            </span>
           </div>
         </div>
         <div className="w-full bg-muted border border-border/50 h-1.5 rounded-full overflow-hidden">
@@ -40,7 +43,6 @@ export const Widget = () => {
         </div>
       </CardFooter>
     </Card>
-
   );
 };
 

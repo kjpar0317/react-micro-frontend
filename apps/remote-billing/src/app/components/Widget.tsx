@@ -1,6 +1,5 @@
-import React from 'react';
-import { CreditCard, TrendingUp, AlertCircle } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter, Badge } from '@mfe/ui';
+import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle } from '@mfe/ui';
+import { AlertCircle, CreditCard, TrendingUp } from 'lucide-react';
 
 export const Widget = () => {
   return (
@@ -16,7 +15,9 @@ export const Widget = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">Total Billing</CardTitle>
+        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">
+          Total Billing
+        </CardTitle>
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-bold tracking-tight">$124.50</span>
           <div className="flex items-center gap-1 text-[10px] text-green-400 font-bold uppercase tracking-wider">
@@ -32,7 +33,6 @@ export const Widget = () => {
         </div>
       </CardFooter>
     </Card>
-
   );
 };
 

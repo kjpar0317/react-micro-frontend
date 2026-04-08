@@ -52,7 +52,6 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
     <>
       <AppSidebar />
       <SidebarInset className="flex flex-col flex-1 min-h-screen transition-all duration-200">
-        {/* Top Header */}
         <header
           className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-10 shrink-0 transition-all duration-200 ${
             state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
@@ -61,7 +60,6 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
           <div className="flex items-center gap-4">
             <SidebarTrigger className="relative z-50 h-9 w-9 text-primary bg-primary/10 hover:bg-primary/20 hover:text-primary transition-all border border-primary/20 rounded-lg shadow-sm" />
             <Separator orientation="vertical" className="h-4 bg-border" />
-
             <div className="relative w-64 md:w-96 group hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
               <input
@@ -104,12 +102,8 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
             </div>
           </div>
         </header>
-
-        {/* Dynamic Route Content */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10 relative z-10">
           <Outlet />
-
-          {/* Decorative Background Elements */}
           <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
           <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-purple-500/5 blur-[100px] rounded-full pointer-events-none -z-10"></div>
         </main>

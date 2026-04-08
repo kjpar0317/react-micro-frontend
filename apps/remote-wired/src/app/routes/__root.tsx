@@ -1,14 +1,7 @@
-import {
-  Separator,
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-  TooltipProvider,
-  useSidebar,
-} from '@mfe/ui';
+import { Separator, SidebarInset, SidebarProvider, SidebarTrigger, TooltipProvider, useSidebar } from '@mfe/ui';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { Bell, Moon, Search, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppSidebar } from '../components/app-sidebar';
 
 export const Route = createRootRoute({
@@ -18,7 +11,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
+      return localStorage.getItem('theme') as 'dark' | 'light' || 'dark';
     }
     return 'dark';
   });
@@ -31,7 +24,7 @@ function RootComponent() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -45,23 +38,19 @@ function RootComponent() {
   );
 }
 
-function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleTheme: () => void }) {
+function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light', toggleTheme: () => void }) {
   const { state } = useSidebar();
 
   return (
     <>
       <AppSidebar />
       <SidebarInset className="flex flex-col flex-1 min-h-screen transition-all duration-200">
-        {/* Top Header */}
-        <header
-          className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-10 shrink-0 transition-all duration-200 ${
-            state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
-          }`}
-        >
+        <header className={`h-16 border-b border-border flex items-center justify-between pr-6 bg-background/40 backdrop-blur-md sticky top-0 z-10 shrink-0 transition-all duration-200 ${
+          state === 'collapsed' ? 'pl-14 md:pl-16' : 'pl-4 md:pl-6'
+        }`}>
           <div className="flex items-center gap-4">
             <SidebarTrigger className="relative z-50 h-9 w-9 text-primary bg-primary/10 hover:bg-primary/20 hover:text-primary transition-all border border-primary/20 rounded-lg shadow-sm" />
             <Separator orientation="vertical" className="h-4 bg-border" />
-
             <div className="relative w-64 md:w-96 group hidden sm:block">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-foreground transition-colors" />
               <input
@@ -72,7 +61,7 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button
+            <button 
               type="button"
               onClick={toggleTheme}
               className="w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors text-muted-foreground hover:text-foreground"
@@ -80,10 +69,7 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <button
-              type="button"
-              className="relative w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors"
-            >
+            <button type="button" className="relative w-8 h-8 rounded-lg hover:bg-white/5 flex items-center justify-center transition-colors">
               <Bell className="w-4 h-4 text-muted-foreground" />
               <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-destructive rounded-full border border-background"></span>
             </button>
@@ -104,12 +90,8 @@ function AppLayout({ theme, toggleTheme }: { theme: 'dark' | 'light'; toggleThem
             </div>
           </div>
         </header>
-
-        {/* Dynamic Route Content */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10 relative z-10">
           <Outlet />
-
-          {/* Decorative Background Elements */}
           <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
           <div className="absolute bottom-[-10%] left-[-10%] w-[30%] h-[30%] bg-purple-500/5 blur-[100px] rounded-full pointer-events-none -z-10"></div>
         </main>

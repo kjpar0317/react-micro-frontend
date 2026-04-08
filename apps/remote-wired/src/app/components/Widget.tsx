@@ -1,6 +1,5 @@
-import React from 'react';
-import { Network, Activity, Globe } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter, Badge } from '@mfe/ui';
+import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle } from '@mfe/ui';
+import { Activity, Network } from 'lucide-react';
 
 export const Widget = () => {
   return (
@@ -16,10 +15,14 @@ export const Widget = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">Wired Network</CardTitle>
+        <CardTitle className="text-sm font-medium text-muted-foreground mb-1">
+          Wired Network
+        </CardTitle>
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-bold tracking-tight">940.2</span>
-          <span className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">Mbps</span>
+          <span className="text-xs font-bold text-muted-foreground/30 uppercase tracking-widest">
+            Mbps
+          </span>
         </div>
       </CardContent>
       <CardFooter className="pt-4 border-t border-border">
@@ -29,13 +32,14 @@ export const Widget = () => {
             <span>Optimal Ping</span>
           </div>
           <div className="flex items-center gap-1">
-             <div className="w-1 h-1 rounded-full bg-indigo-400 animate-ping"></div>
-             <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Live</span>
+            <div className="w-1 h-1 rounded-full bg-indigo-400 animate-ping"></div>
+            <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">
+              Live
+            </span>
           </div>
         </div>
       </CardFooter>
     </Card>
-
   );
 };
 
