@@ -2,8 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
     "verbatimModuleSyntax": true,
     "sourceMap": true,
     "declaration": false,
@@ -17,16 +15,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    // "forceConsistentCasingInFileNames": true,
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "allowSyntheticDefaultImports": true,
     "paths": {
-      "@mfe/ui": ["libs/shared/ui/src/index.ts"],
-      "@mfe/hooks": ["libs/shared/hooks/src/index.ts"],
-      "@mfe/utils": ["libs/shared/utils/src/index.ts"],
-      "@mfe/types": ["libs/shared/types/src/index.ts"]
+      "@mfe/ui": ["./libs/shared/ui/src/index.ts"],
+      "@mfe/hooks": ["./libs/shared/hooks/src/index.ts"],
+      "@mfe/utils": ["./libs/shared/utils/src/index.ts"],
+      "@mfe/types": ["./libs/shared/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],
