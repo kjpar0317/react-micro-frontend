@@ -16,7 +16,8 @@
     "preview": "pnpm -r --parallel preview",
     "test": "pnpm -r test",
     "docker:build": "docker build --build-arg APP_NAME=${npm_config_app:-host} -t mfe-${npm_config_app:-host} .",
-    "docker:run": "docker run -p 8080:80 mfe-${npm_config_app:-host}"
+    "docker:run": "docker run -p 8080:80 mfe-${npm_config_app:-host}",
+    "docker:test": "docker-compose up --build"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

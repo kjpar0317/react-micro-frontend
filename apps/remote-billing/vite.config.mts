@@ -3,10 +3,10 @@
 import path from 'node:path';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import federation from '@originjs/vite-plugin-federation';
 import { tanstackRouter } from '@tanstack/router-vite-plugin';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -18,6 +18,7 @@ export default defineConfig(() => ({
   preview: {
     port: 4201,
     host: 'localhost',
+    cors: true,
   },
   base: '/',
   plugins: [

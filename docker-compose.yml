@@ -1,0 +1,90 @@
+x-mfe-defaults: &mfe-defaults
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  networks:
+    - mfe-internal
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+  deploy:
+    resources:
+      limits:
+        cpus: "0.5"
+        memory: 128M
+
+services:
+  host:
+    <<: *mfe-defaults
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: host
+    ports:
+      - "127.0.0.1:4200:80"
+    container_name: mfe-host
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  remote-billing:
+    <<: *mfe-defaults
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: remote-billing
+    ports:
+      - "127.0.0.1:4201:80"
+    container_name: mfe-remote-billing
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  remote-wired:
+    <<: *mfe-defaults
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: remote-wired
+    ports:
+      - "127.0.0.1:4202:80"
+    container_name: mfe-remote-wired
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  remote-wireless:
+    <<: *mfe-defaults
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: remote-wireless
+    ports:
+      - "127.0.0.1:4203:80"
+    container_name: mfe-remote-wireless
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  mfe-internal:
+    driver: bridge

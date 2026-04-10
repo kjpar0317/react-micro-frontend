@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
     preview: {
       port: 4200,
       host: 'localhost',
+      cors: true,
     },
     base: '/',
     plugins: [
