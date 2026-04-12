@@ -8,6 +8,11 @@ import { tanstackRouter } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
+const isLocalBuild = !!process.env['LOCAL_BUILD'];
+const outDir = isLocalBuild
+  ? path.resolve(import.meta.dirname, 'dist')
+  : path.resolve(import.meta.dirname, '../../dist/apps/remote-billing');
+
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/remote-billing',
@@ -19,6 +24,7 @@ export default defineConfig(() => ({
     port: 4201,
     host: 'localhost',
     cors: true,
+    outDir,
   },
   base: '/',
   plugins: [
@@ -43,7 +49,7 @@ export default defineConfig(() => ({
   //   plugins: () => [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: path.resolve(import.meta.dirname, '../../dist/apps/remote-billing'),
+    outDir,
     emptyOutDir: true,
     reportCompressedSize: true,
     target: 'esnext',

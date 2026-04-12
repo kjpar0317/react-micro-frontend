@@ -8,6 +8,11 @@ import { defineConfig, loadEnv } from 'vite';
 import federation from '@originjs/vite-plugin-federation';
 import { tanstackRouter } from '@tanstack/router-vite-plugin';
 
+const isLocalBuild = !!process.env['LOCAL_BUILD'];
+const outDir = isLocalBuild
+  ? path.resolve(import.meta.dirname, 'dist')
+  : path.resolve(import.meta.dirname, '../../dist/apps/host');
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
@@ -22,6 +27,7 @@ export default defineConfig(({ mode }) => {
       port: 4200,
       host: 'localhost',
       cors: true,
+      outDir,
     },
     base: '/',
     plugins: [
@@ -47,7 +53,7 @@ export default defineConfig(({ mode }) => {
     //   plugins: () => [ nxViteTsPaths() ],
     // },
     build: {
-      outDir: path.resolve(import.meta.dirname, '../../dist/apps/host'),
+      outDir,
       emptyOutDir: true,
       reportCompressedSize: true,
       target: 'esnext',
